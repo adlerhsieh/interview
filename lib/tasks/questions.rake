@@ -25,7 +25,7 @@ task questions: :environment do
 		puts ""
 		puts question[:q]
 		puts "==============================="
-		puts "What's the output? (Type 'exception' if you expect an exception)"
+		puts "What's the returned value? (Type 'exception' if you expect an exception)"
 		puts ""
 		print "> "
 		answer = STDIN.gets.chomp

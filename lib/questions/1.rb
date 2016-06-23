@@ -5,9 +5,13 @@ class A
 end
 
 class B < A
+  def foo
+    'bar'
+  end
 end
 
 B.foo
+
 ====Answer====
 'foo'
 "foo"

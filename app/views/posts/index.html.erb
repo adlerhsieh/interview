@@ -1,3 +1,8 @@
+<div class="container">
+  <%= link_to 'New Post', new_post_path, class: 'right-button' %>
+</div>
+
+<h2 class="title"><%= link_to 'Blog', "/" %></h2>
 <% @posts.each do |post| %>
   <div class="post-div">
     <div class="avatar">

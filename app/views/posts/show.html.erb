@@ -1,7 +1,10 @@
-<h2 class="title">Post</h2>
+<h2 class="title"><%= @post.title %></h2>
+<div class="container">
+  <p><%= link_to '< Back', posts_path %> </p>
+</div>
 
 <div class="post-div">
-  <h2><%= @post.title %></h2>
+  <p>Author: <%= @post.user.username %> - <%= @post.created_at.strftime("%Y-%m-%d %H:%M:%S") %> </p>
   <% @post.content.split("\n").each do |p| %>
     <p class="post-content"><%= p %></p>
   <% end %>

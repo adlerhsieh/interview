@@ -1,9 +1,35 @@
+puts 'Purging existing data'
 User.delete_all
 Post.delete_all
 Comment.delete_all
 
 u1 = User.create(username: Faker::Name.first_name)
 u2 = User.create(username: Faker::Name.first_name)
+
+puts 'Creating random users'
+1000.times do
+  u = User.create(username: Faker::Name.first_name)
+  [0,1,2,3].sample.times do
+    Post.create(user: u, title: Faker::Lorem.sentence, content: '')
+  end
+end
+
+puts 'Creating random posts & comments'
+p = Post.create(
+  title: 'Teams: Work Better Together',
+  user: u1,
+  content: <<-POST
+At DigitalOcean we know that it takes teamwork to build and ship great things to the world. Our own products wouldn’t exist without passionate, hard-working teams collaborating to create easy-to-use experiences for developers.
+
+A year ago we launched Teams on DigitalOcean to “better support teams of developers and companies working on large-scale and established applications.” The first iteration focused on developer teams managing larger, more complex, production systems by organizing all of their infrastructure under one roof, with one invoice, and no shared credentials.
+  POST
+)
+
+p.comments.create([
+  { content: 'The resolvers which compose our authoritative DNS infrastructure are fronted by a well-known DDoS mitigation company.', post: p, user: u2 },
+  { content: 'The service they offer uses anycast to move traffic from clients all across the world to DigitalOcean’s nearest datacenter. We then have authoritative resolvers in all of our facilities to process and respond to DNS queries.', post: p, user: u1 }
+]
+)
 
 p = Post.create(
   title: 'Introducing doctl: the Command Line Interface to DigitalOcean',
@@ -25,30 +51,7 @@ That goal goes beyond just the web interface; we’ve sought to build an API tha
   POST
 )
 
-1000.times do
-  u = User.create(username: Faker::Name.first_name)
-  [0,1,2,3].sample.times do
-    Post.create(user: u, title: Faker::Lorem.sentence, content: '')
-  end
-end
-
 require 'securerandom'
 1000.times do
   p.comments.create(content: Faker::Lorem.paragraph(5), post: p, user: User.all.to_a.sample)
 end
-
-p = Post.create(
-  title: 'Teams: Work Better Together',
-  user: u1,
-  content: <<-POST
-At DigitalOcean we know that it takes teamwork to build and ship great things to the world. Our own products wouldn’t exist without passionate, hard-working teams collaborating to create easy-to-use experiences for developers.
-
-A year ago we launched Teams on DigitalOcean to “better support teams of developers and companies working on large-scale and established applications.” The first iteration focused on developer teams managing larger, more complex, production systems by organizing all of their infrastructure under one roof, with one invoice, and no shared credentials.
-  POST
-)
-
-p.comments.create([
-  { content: 'The resolvers which compose our authoritative DNS infrastructure are fronted by a well-known DDoS mitigation company.', post: p, user: u2 },
-  { content: 'The service they offer uses anycast to move traffic from clients all across the world to DigitalOcean’s nearest datacenter. We then have authoritative resolvers in all of our facilities to process and respond to DNS queries.', post: p, user: u1 }
-]
-)

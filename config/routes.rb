@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :posts, only: %i(index show) do
+  resources :posts do
     resources :comments, only: %i(index show)
   end
 

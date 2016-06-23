@@ -1,17 +1,18 @@
 class A
-  attr_reader :a
+  attr_reader :bar
 
   def initialize
-    @a = 10
+    @bar = 10
   end
 
   def foo
-    @a ||= 20
+    @bar ||= 20
   end
 end
 
-a = A.new.foo
-a
+a = A.new
+a.foo
+a.a
 
 ====Answer====
 10

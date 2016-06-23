@@ -29,6 +29,7 @@ task questions: :environment do
 		puts ""
 		print "> "
 		answer = STDIN.gets.chomp
+		next if answer == 'skip'
 		exit if answer.gsub(/[\n ]/, '') == 'exit'
 		while not_match?(answer.gsub(/[\n ]/, ''), question[:a])
 			puts "Incorrect. Please Try Again.".red

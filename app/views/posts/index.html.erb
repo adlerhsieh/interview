@@ -1,0 +1,16 @@
+<% @posts.each do |post| %>
+  <div class="post-div">
+    <div class="avatar">
+      <%= author_default_avatar(post) %>
+    </div>
+    <div class="post-body">
+      <h3><%= link_to post.title, post_path(post) %></h3>
+      <p class="note">
+        <%= post.user.username %> - 
+        <%= post.created_at.strftime("%Y-%m-%d %H:%M:%S") %> 
+        (<%= time_ago_in_words(post.created_at) %> ago)
+      </p>
+    </div>
+  </div>
+<% end %>
+

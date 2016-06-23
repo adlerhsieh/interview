@@ -9,7 +9,7 @@
 #     plus(5, 5)
 #     # => 10
 
-# Run `rspec spec/lib/0_spec.rb` to run the tests.
+# Run `rspec spec/lib/interview/0_spec.rb` for testing.
 def plus(x, y)
 
 end

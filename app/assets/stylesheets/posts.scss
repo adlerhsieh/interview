@@ -13,8 +13,8 @@ body {
 }
 
 .post-div {
-  width: 80%;
-  margin-left: 50px;
+  width: 85%;
+  margin-left: 5%;
   margin-top: 50px;
   padding-left: 40px;
   padding-bottom: 10px;
@@ -40,4 +40,13 @@ body {
 
 .post-body {
   margin-left: 60px;
+}
+
+.post-content {
+  font-size: 18px;
+}
+
+.divider {
+  border-bottom: 1px solid gray;
+  width: 70%;
 }

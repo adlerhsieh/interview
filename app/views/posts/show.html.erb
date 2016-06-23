@@ -1,0 +1,30 @@
+<h2 class="title">Post</h2>
+
+<div class="post-div">
+  <h2><%= @post.title %></h2>
+  <% @post.content.split("\n").each do |p| %>
+    <p class="post-content"><%= p %></p>
+  <% end %>
+</div>
+
+<% if @post.comments.any? %>
+  <h2 class="title">Comments</h2>
+
+  <div class="post-div">
+    <% @post.comments.each do |comment| %>
+      <p>
+      <span style="font-size: 24px;">
+        <%= comment.user.username %>
+      </span>
+      <span style="font-size: 10px;">
+        (
+          Registerd <%= time_ago_in_words(comment.user.created_at) %> ago. 
+          Own <%= comment.user.posts.size %> posts.
+        )
+      </span>
+      </p>
+      <p><%= word_wrap(comment.content) %></p>
+      <div class="divider"></div>
+    <% end %>
+  </div>
+<% end %>

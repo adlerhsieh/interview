@@ -10,4 +10,5 @@ gem 'jbuilder', '~> 2.0'
 group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'colorize'
+  gem 'faker'
 end

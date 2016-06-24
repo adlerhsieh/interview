@@ -12,7 +12,7 @@ end
 
 a = A.new
 a.foo
-a.a
+a.bar
 
 ====Answer====
 10

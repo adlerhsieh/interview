@@ -3,7 +3,7 @@ require 'spec_helper'
 require_relative "../../../lib/interview/#{n}"
 
 describe '#sum' do
-  it { expect(plus(1, 4)).to eq 10 }
-  it { expect(plus(1, 10)).to eq 55 }
-  it { expect(plus(-2, -5)).to eq -14 }
+  it { expect(sum(1, 4)).to eq 10 }
+  it { expect(sum(1, 10)).to eq 55 }
+  it { expect(sum(2, 5)).to eq 14 }
 end

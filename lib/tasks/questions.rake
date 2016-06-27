@@ -4,15 +4,15 @@ task questions: :environment do
 	puts "Welcome!".green
 	puts ""
 	questions = []
-	Dir["#{Rails.root}/lib/questions/**/*"].each_with_index do |file, index| 
+	Dir["#{Rails.root}/lib/questions/**/*"].each_with_index do |file, index|
 		next unless file.include?('.rb')
-		code   = File.read(file)
-		q      = code.split('====Answer====')[0]
-		a      = code.split('====Answer====')[1].split("\n").map {|n| n.gsub(/[\n ]/, '') }
+		code   = File.read(file).split('====Answer====')
+		q      = code[0]
+		a      = code[1].split("\n").map {|n| n.gsub(/[\n ]/, '') }
 		a.delete("")
 		questions << { q: q, a: a }
 	end
-	
+
 	def not_match?(input, answers)
 		answers.any? {|a| a == input }.!
 	end

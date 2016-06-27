@@ -35,6 +35,7 @@ task questions: :environment do
 			puts "Incorrect. Please Try Again.".red
 			print "> "
 			answer = STDIN.gets.chomp
+      next if answer == 'skip'
 			exit if answer.gsub(/[\n ]/, '') == 'exit'
 		end
 		puts ""

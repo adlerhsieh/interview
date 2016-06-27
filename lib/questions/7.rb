@@ -1,31 +1,20 @@
-class Calculator
-  attr_reader :result
+class Application
+  @@routes = {}
 
-  def initialize(init, &block)
-    @result = init
-    instance_eval(&block)
+  def self.get(path, &block)
+  	@@routes[path] = yield
   end
 
-  def plus(x)
-    @result = @result + x
-  end
-
-  def minus(x)
-    @result = @result - x
-  end
-
-  def multiply(x)
-    @result = @result * x
+  def self.routes
+  	@@routes
   end
 end
 
-calculation = Calculator.new(5) do 
-  plus(2)
-  minus(3)
-  multiply(10)
+Application.get '/' do
+  'foo'
 end
 
-calculation.result
+Application.routes['/foo']
 
 ====Answer====
-40
+nil

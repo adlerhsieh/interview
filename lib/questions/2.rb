@@ -9,6 +9,3 @@ class B
 end
 
 B.new.foo
-
-====Answer====
-exception

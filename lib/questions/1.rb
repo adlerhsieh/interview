@@ -11,7 +11,3 @@ class B < A
 end
 
 B.foo
-
-====Answer====
-'foo'
-"foo"

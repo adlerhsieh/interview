@@ -1,6 +1,10 @@
-# Rails 4.2
 
-"foo".try(:downcase).try(:to_time)
+class Foo
+  class Bar
+    def self.foobar
+      'foobar'
+    end
+  end
+end
 
-====Answer====
-nil
+Foo.foobar

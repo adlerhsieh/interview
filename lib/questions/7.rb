@@ -15,6 +15,3 @@ Application.get '/' do
 end
 
 Application.routes['/foo']
-
-====Answer====
-nil

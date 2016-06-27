@@ -1,24 +1,24 @@
 class A
-  attr_accessor :foo
-  def bar
-    @foo -= 3
+  def foo
+    @bar -= 3
   end
 end
 
 class B < A
   def initialize
-    @foo = 1
+    @bar = 1
+  end
+
+  def foo
+    @bar += 2
+    super
   end
 
   def bar
-    @foo += 2
-    super
+    @bar
   end
 end
 
 b = B.new
-b.bar
 b.foo
-
-====Answer====
-0
+b.bar

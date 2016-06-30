@@ -20,7 +20,7 @@
 #	  )
 #     # => [800, 2000, 200]
 
-# Run `rspec spec/lib/interview/3_spec.rb` for testing.
+# method
 def prices(items)
-
+  # code
 end

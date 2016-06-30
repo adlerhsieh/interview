@@ -9,7 +9,7 @@
 #     sum(-1, -3)
 #     # => -6
 
-# Run `rspec spec/lib/interview/1_spec.rb` for testing.
+# method
 def sum(x, y)
-
+  # code
 end

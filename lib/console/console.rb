@@ -4,10 +4,9 @@ class Console
   def initialize(dir)
     @questions = []
     @dir = dir
-    collect
   end
 
-  def collect
+  def collect_questions
     Dir["#{Rails.root}/lib/#{@dir}/**/*"].each_with_index do |file, index|
       next unless file.include?('.rb')
       code   = File.read(file)
@@ -20,7 +19,8 @@ class Console
     end
   end
 
-  def loop
+  def loop_questions
+    collect_questions
     puts ""
     puts "Welcome!".green
     puts ""
@@ -39,12 +39,7 @@ class Console
       answer = STDIN.gets.chomp
       next if answer == 'skip'
       exit if answer.gsub(/[\n ]/, '') == 'exit'
-      case @dir
-      when 'questions'
-        loop_questions(answer, question)
-      when 'methods'
-        loop_methods
-      end
+      loop_answers(answer, question)
       puts ""
       puts "Correct!".green
       puts ""
@@ -54,15 +49,75 @@ class Console
     puts ""
   end
 
+  def loop_methods
+    collect_methods
+    puts ""
+    puts "Welcome!".green
+    puts ""
+    @questions.each_with_index do |question, i|
+      sleep(1)
+      puts "==============================="
+      puts "Method No: #{i}"
+      puts "==============================="
+      puts ""
+      puts question[:i]
+      puts ""
+      puts "==============================="
+      puts "Fulfill the test cases with an one-line method."
+      puts question[:m]
+      puts ""
+      print "> "
+      answer = STDIN.gets.chomp
+      next if answer == 'skip'
+      exit if answer.gsub(/[\n ]/, '') == 'exit'
+      while unfulfilled?(question, answer, i)
+        puts question[:i]
+        puts "Please Try Again.".red
+        puts question[:m]
+        puts ""
+        print "> "
+        answer = STDIN.gets.chomp
+        next if answer == 'skip'
+        exit if answer.gsub(/[\n ]/, '') == 'exit'
+      end
+    end
+  end
+
+  def unfulfilled?(question, answer, i)
+    File.open("#{Rails.root}/tmp/methods/#{i}.rb", "w+") {|file|
+      file.write(question[:m].sub("# Your code goes here...", answer))
+    }
+    if method_valid?(i)
+      system("cd #{Rails.root} && rspec spec/lib/methods/#{i}_spec.rb")
+      message = %x[cd #{Rails.root} && rspec spec/lib/methods/#{i}_spec.rb]
+      return false if message.include?('examples, 0 failures')
+    end
+    true
+  end
+
+  def method_valid?(i)
+    begin
+      eval(File.read("#{Rails.root}/tmp/methods/#{i}.rb"))
+    rescue SyntaxError => e
+      puts "#{"SyntaxError".colorize(:red)}: #{e.message}"
+      return false
+    end
+    true
+  end
+
+  def collect_methods
+    Dir["#{Rails.root}/lib/#{@dir}/**/*"].each_with_index do |file, index|
+      next unless file.include?('.rb')
+      code        = File.read(file).split("# method")
+      instruction = code[0]
+      method      = code[1].sub("# code", "# Your code goes here...")
+      @questions << { i: instruction, m: method, f: file }
+    end
+  end
+
   protected
 
-    def colorize(code)
-      code.gsub("class ", "class ".colorize(:light_red))
-          .gsub("def ", "def ".colorize(:light_red))
-          .gsub("end", "end".colorize(:light_red))
-    end
-
-    def loop_questions(answer, question)
+    def loop_answers(answer, question)
       while not_match?(answer, question[:a])
         puts "Incorrect. Please Try Again.".red
         print "> "
@@ -72,17 +127,8 @@ class Console
       end
     end
 
-    def loop_methods
-      
-    end
-
     def guide
-      case @dir
-      when 'questions'      
-        "What's the returned value? (Type #{"Exception".colorize(:red)} if you expect an exception)"
-      when 'methods'
-        "Fulfill expectations with an one-line method"
-      end
+      "What's the returned value? (Type #{"Exception".colorize(:red)} if you expect an exception)"
     end
 
     def not_match?(input, answer)

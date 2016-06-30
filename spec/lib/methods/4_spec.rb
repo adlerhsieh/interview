@@ -1,6 +1,6 @@
 n = __FILE__[__FILE__ =~ /\d_spec.rb/]
 require 'spec_helper'
-require_relative "../../../lib/interview/#{n}"
+require_relative "../../../tmp/methods/#{n}"
 
 describe '#prices' do
   it "lists prices" do

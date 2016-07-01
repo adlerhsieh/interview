@@ -1,4 +1,5 @@
 require 'colorize'
+require "readline"
 
 class Console
   def initialize(dir)
@@ -35,11 +36,12 @@ class Console
       puts "==============================="
       puts guide
       puts ""
-      print "> "
-      answer = STDIN.gets.chomp
-      next if answer == 'skip'
-      exit if answer.gsub(/[\n ]/, '') == 'exit'
-      loop_answers(answer, question)
+      while answer = Readline.readline("> ", true)
+        exit  if answer.gsub(/[\n ]/, '') == 'exit'
+        break if answer == 'skip'
+        break if match_answer?(answer, question[:a])
+        puts "Incorrect. Please Try Again.".red
+      end
       puts ""
       puts "Correct!".green
       puts ""
@@ -131,12 +133,12 @@ class Console
       "What's the returned value? (Type #{"Exception".colorize(:red)} if you expect an exception)"
     end
 
-    def not_match?(input, answer)
+    def match_answer?(input, answer)
       begin
         input = eval(input)
       rescue Exception
-        return true
+        return false
       end
-      input != answer
+      input == answer
     end
 end

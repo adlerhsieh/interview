@@ -1,4 +1,4 @@
 task questions: :environment do
-	require_relative "../console/console"
-	Console.new('questions').loop_questions
+	require_relative "../console/console/question"
+	Console::Question.new.loop
 end

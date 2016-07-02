@@ -6,6 +6,7 @@ class Console
       @questions = []
       @dir = 'methods'
       collect
+      FileUtils.mkdir_p("#{Rails.root}/tmp/methods")
     end
 
     def loop

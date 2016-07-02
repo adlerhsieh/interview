@@ -1,16 +1,21 @@
-## For Interviewees
+# For Interviewees
 
 ### Installation
+
+Clone:
 
 ```
 git clone https://github.com/adlerhsieh/interview.git
 cd interview
-bundle install
-rake db:migrate
-rake db:seed
 ```
 
-### Test 1: Answer the Returned Values
+Setup:
+
+```
+bundle install
+```
+
+### Part 1: Give the Returned Value
 
 Run: 
 
@@ -18,13 +23,14 @@ Run:
 rake questions
 ```
 
-which brings the user to an interactive console. Enter the returned value and see if it is correct.
+which brings you to an interactive console. You will see several pieces of code. Input the returned values for each code piece. Type `Exception` if you expect an exception.
 
-Use `exit` to exit.
+Other commands:
 
-Use `skip` to skip a question.
+1. Use `exit` to exit.
+2. Use `skip` to skip a method.
 
-### Test 2: Fulfill the Specs
+### Part 2: Write a Method
 
 Run: 
 
@@ -32,24 +38,31 @@ Run:
 rake methods
 ```
 
-which brings the user to another interactive console. Write methods in one line and fulfill the instructions.
+which brings you to another interactive console. Write methods in one line and fulfill the instructions.
 
 Each submission triggers `rspec` to run tests against the submitted code. Make them pass to move on to the next method.
 
-Use `exit` to exit.
+Other commands:
 
-Use `skip` to skip a method.
+1. Use `exit` to exit.
+2. Use `skip` to skip a method.
 
+### Part 3: Debugging Rails
 
-### Test 3: Debugging Rails
+Setting up db is necessary for this part. Run:
 
-Start `rails server` and open root `/` in the browser.
+```
+rake db:migrate
+rake db:seed
+```
+
+Start `rails server` and open root `/` in the browser. The interviewee should solve these problems:
 
 1. The posts should display a default avatar, which is their authors' first character of their name. They are missing. Fix it.
-2. Enter the post with `(Slow Post)` text. Its performance is far more slower than other posts. Don't modify the layout and improve its performance.
-3. When creating a `Post`, the content is always blank. Make sure the content is correctly displayed in `posts#show`.
+2. Enter the post with `(Slow Post)` text. It reveals the performance issue for this app. Don't modify the layout and improve its performance.
+3. When creating a `Post` with the `New post` button, the `content` is always blank. Make sure the content is correctly displayed in `posts#show`.
 
-## For Interviewers
+# For Interviewers
 
 Questions and methods are customizable in `lib` directories. They follow a simple set of rules.
 
@@ -68,33 +81,33 @@ b = 'bar'
 a + b
 ```
 
-And name the file as `lib/questions/0.rb`, which will be processed as the first question to the interviewee.
+If the filename is `lib/questions/0.rb`, it will be processed as the first question.
 
 ### Methods
 
 #### Code
 
-Like in the previous section, add files in `lib/questions` directory. Name the file `0`, `1`, `2` and so on. Every file will be process in order of their filename. 
+Add files in `lib/questions` directory.The specifications are:
 
-The specifications are:
-
-1. Use `# method` to separate instructions and code.
-2. Use `# code` to indicate which part the interviewees' code are inserted.
-3. You can either comment out instructions or not. They will only be displayed but not evaluated.
+1. Name the file `0`, `1`, `2` and so on. Every file will be process in order of their filename. 
+2. Each file is written with 2 parts: `instruction` and `method`. `Intsruction` describes the purpose of this method, and `method` is for the interviewee to understand where the code is inserted.
+2. Use `# method` to separate instructions and method.
+3. Use `# code` to indicate which part the interviewees' code are inserted.
+4. You can either comment out instructions or not. They will not be evaluated.
 
 Example:
 
 ```ruby
-# Create a method that returns the sum of x and y.
+Create a method that returns the sum of x and y.
 
-# Example: 
-#
-#     plus(1, 1)
-#     # => 2
-#     plus(2, 3)
-#     # => 5
-#     plus(5, 5)
-#     # => 10
+Example: 
+
+    plus(1, 1)
+    # => 2
+    plus(2, 3)
+    # => 5
+    plus(5, 5)
+    # => 10
 
 # method
 def plus(x, y)
@@ -104,14 +117,20 @@ end
 
 #### Spec
 
-Also, this project uses `RSpec` as test framework. You need to add specs in `spec/lib/methods` in order to make sure interviewees' methods fulfill a specific standard.
+Also, this project implements `RSpec` as the test framework. You need to add specs in `spec/lib/methods` in order to make sure interviewees' methods fulfill a specific standard.
 
 Example:
 
 ```ruby
+require 'spec_helper'
+# Make sure the test file is required
+require_relative '../../../tmp/methods/0'
+
 describe '#plus' do
   it { expect(plus(1, 1)).to eq 2 }
   it { expect(plus(2, 3)).to eq 5 }
   it { expect(plus(5, 5)).to eq 10 }
 end
 ```
+
+Also, it is suggested that interviewees only take necessary tests. Taking the whole test-set can be time-consuming.

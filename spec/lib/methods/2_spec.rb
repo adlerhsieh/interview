@@ -1,6 +1,4 @@
-n = __FILE__[__FILE__ =~ /\d_spec.rb/]
-require 'spec_helper'
-require_relative "../../../tmp/methods/#{n}"
+require 'interview_helper'
 
 describe '#order' do
   it { expect(order([1, 5, 7, 3, 0])).to eq [0, 1, 3, 5, 7] }

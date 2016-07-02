@@ -15,7 +15,7 @@ Setup:
 bundle install
 ```
 
-### Part 1: Give the Returned Value
+### Part 1: Name the Returned Value
 
 Run: 
 
@@ -119,12 +119,12 @@ end
 
 Also, this project implements `RSpec` as the test framework. You need to add specs in `spec/lib/methods` in order to make sure interviewees' methods fulfill a specific standard.
 
+Please add `require 'interview_helper'` at the beginning of every spec file.
+
 Example:
 
 ```ruby
-require 'spec_helper'
-# Make sure the test file is required
-require_relative '../../../tmp/methods/0'
+require 'interview_helper'
 
 describe '#plus' do
   it { expect(plus(1, 1)).to eq 2 }

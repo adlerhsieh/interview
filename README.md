@@ -133,4 +133,8 @@ describe '#plus' do
 end
 ```
 
+# Other Stuff
+
+[Some Interview Questions](https://github.com/adlerhsieh/interview/blob/master/lib/README.md)
+
 Also, it is suggested that interviewees only take necessary tests. Taking the whole test-set can be time-consuming.

@@ -1,4 +1,21 @@
-# For Interviewees
+# Interview
+
+This project serves to evaluate developers' proficiency in Ruby & Rails. 
+
+## How Does It Help?
+
+Interviees are expected to clone this project and enter its interactive console for two types of tests:
+
+1. Read a piece of code, and name the returned value by evaluating the code.
+2. Read the specifications, and write a method to fulfill the specs.
+
+Also, start the `rails server` if the they are expected to debug several Rails problems. Interviers can sit by the interviewees to see how they handle the problems.
+
+The interactive console looks like this:
+
+![](http://i.imgur.com/yRox8fB.gif)
+
+## Ready for the Interview?
 
 ### Installation
 
@@ -62,7 +79,7 @@ Start `rails server` and open root `/` in the browser. The interviewee should so
 2. Enter the post with `(Slow Post)` text. It reveals the performance issue for this app. Don't modify the layout and improve its performance.
 3. When creating a `Post` with the `New post` button, the `content` is always blank. Make sure the content is correctly displayed in `posts#show`.
 
-# For Interviewers
+## Customization
 
 Questions and methods are customizable in `lib` directories. They follow a simple set of rules.
 

@@ -152,6 +152,6 @@ end
 
 # Other Stuff
 
-[Some Interview Questions](https://github.com/adlerhsieh/interview/blob/master/lib/README.md)
-
-Also, it is suggested that interviewees only take necessary tests. Taking the whole test-set can be time-consuming.
+1. [Some Interview Questions](https://github.com/adlerhsieh/interview/blob/master/lib/README.md)
+2. Pull requests and issues are welcome.
+3. The whole process can take about 1.5 hour based on my experience. It is suggested that interviewees only take necessary tests. Taking the whole test-set can be time-consuming.

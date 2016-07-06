@@ -45,7 +45,7 @@ which brings you to an interactive console. You will see several pieces of code.
 Other commands:
 
 1. Use `exit` to exit.
-2. Use `skip` to skip a method.
+2. Use `skip` to skip a question.
 
 ### Part 2: Write a Method
 
@@ -78,6 +78,11 @@ Start `rails server` and open root `/` in the browser. The interviewee should so
 1. The posts should display a default avatar, which is their authors' first character of their name. They are missing. Fix it.
 2. Enter the post with `(Slow Post)` text. It reveals the performance issue for this app. Don't modify the layout and improve its performance.
 3. When creating a `Post` with the `New post` button, the `content` is always blank. Make sure the content is correctly displayed in `posts#show`.
+
+## Other Interview Stuff
+
+1. [Some common Interview Questions](https://github.com/adlerhsieh/interview/blob/master/lib/README.md)
+2. The whole test takes about 1.5 hour based on my experience. It is suggested that interviers only assign necessary tests.
 
 ## Customization
 
@@ -150,8 +155,5 @@ describe '#plus' do
 end
 ```
 
-# Other Stuff
+### Pull requests and issues are welcome
 
-1. [Some Interview Questions](https://github.com/adlerhsieh/interview/blob/master/lib/README.md)
-2. Pull requests and issues are welcome.
-3. The whole process can take about 1.5 hour based on my experience. It is suggested that interviewees only take necessary tests. Taking the whole test-set can be time-consuming.

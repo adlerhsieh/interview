@@ -79,6 +79,15 @@ Start `rails server` and open root `/` in the browser. The interviewee should so
 2. Enter the post with `(Slow Post)` text. It reveals the performance issue for this app. Don't modify the layout and improve its performance.
 3. When creating a `Post` with the `New post` button, the `content` is always blank. Make sure the content is correctly displayed in `posts#show`.
 
+### Part 4: Rails feature requests
+
+Intended for more senior candidates after debugging part 3. These are time consuming, so approach is more important than implementation. Encourage dialogue while discussing different approaches.
+
+1. Allow authors to optionally tag new posts.
+2. Paginate posts with an option size no less than 10 and no greater than 100 per page.
+3. Filter blog posts by author, date created, tags, and title.
+4. Full text search posts, comments, and user names
+
 ## Other Interview Stuff
 
 1. [Some common Interview Questions](https://github.com/adlerhsieh/interview/blob/master/lib/README.md)
@@ -112,7 +121,7 @@ If the filename is `lib/questions/0.rb`, it will be processed as the first quest
 Add files in `lib/questions` directory.The specifications are:
 
 1. Name the file `0`, `1`, `2` and so on. Every file will be process in order of their filename. 
-2. Each file is written with 2 parts: `instruction` and `method`. `Intsruction` describes the purpose of this method, and `method` is for the interviewee to understand where the code is inserted.
+2. Each file is written with 2 parts: `instruction` and `method`. `Instruction` describes the purpose of this method, and `method` is for the interviewee to understand where the code is inserted.
 2. Use `# method` to separate instructions and method.
 3. Use `# code` to indicate which part the interviewees' code are inserted.
 4. You can either comment out instructions or not. They will not be evaluated.

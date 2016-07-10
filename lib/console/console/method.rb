@@ -64,8 +64,7 @@ class Console
     end
 
     def collect
-      Dir["#{Rails.root}/lib/#{@dir}/**/*"].each_with_index do |file, index|
-        next unless file.include?('.rb')
+      Console.collect("#{Rails.root}/lib/#{@dir}/**/*.rb") do |file, index|
         code        = File.read(file).split("# method")
         instruction = code[0]
         method      = code[1].sub("# code", "# Your code goes here...")

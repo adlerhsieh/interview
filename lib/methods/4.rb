@@ -2,7 +2,7 @@
 
 # Example: 
 #
-#     pirces(
+#     prices(
 #       [
 #         { name: 'laptop', price: 20000 },
 #         { name: 'mouse',  price: 1500  },
@@ -11,7 +11,7 @@
 #	  )
 #     # => [20000, 1500, 6000]
 #
-#     pirces(
+#     prices(
 #       [
 #         { name: 'earphones', price: 800  },
 #         { name: 'keyboard',  price: 2000 },
